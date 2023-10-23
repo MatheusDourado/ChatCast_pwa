@@ -31,6 +31,12 @@ export default function Main() {
         }
     };
 
+    const handleTouchStart = (event) => {
+        event.preventDefault();
+        startListening();
+      };
+      
+
     return (
         <>
             <main className="relative">
@@ -46,8 +52,8 @@ export default function Main() {
 
                 {showMicrofoneButton && !isAISpeaking && isMobile && (
                     <Button
-                        className="absolute right-8 top-3/4 mt-3  text-xl p-3 text-white rounded-full shadow-lg w-16 h-16 start-button"
-                        onTouchStart={startListening}
+                        className="absolute right-8 top-3/4 mt-3  text-xl p-3 text-white rounded-full shadow-lg w-16 h-16 start-button non-selectable"
+                        onTouchStart={handleTouchStart}
                         onTouchEnd={stopListening}>
                         <FontAwesomeIcon icon={faMicrophone} color="#fff" />
                     </Button>
@@ -55,7 +61,7 @@ export default function Main() {
 
                 {showMicrofoneButton && isAISpeaking && isMobile && (
                     <Button
-                        className="absolute right-8 top-3/4 mt-3  text-xl p-3 text-white rounded-full shadow-lg w-16 h-16 start-button"
+                        className="absolute right-8 top-3/4 mt-3  text-xl p-3 text-white rounded-full shadow-lg w-16 h-16 start-button non-selectable"
                         disabled={true}>
                         <FontAwesomeIcon icon={faMicrophoneSlash} color="#fff" />
                     </Button>
