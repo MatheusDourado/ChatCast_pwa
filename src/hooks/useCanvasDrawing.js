@@ -42,7 +42,6 @@ function useCanvasDrawing(canvasRef) {
     }, [])
 
     const draw = useCallback(() => {
-        console.log(isSpeaking)
         if (!canvasRef.current) return;
 
         const canvasContext = canvasRef.current.getContext('2d');
