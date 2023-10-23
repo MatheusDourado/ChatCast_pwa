@@ -1,0 +1,45 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+    --color-f2f2f2: #F2F2F2;
+    --color-a2eaf2: #A2EAF2;
+    --color-71ced9: #71CED9;
+    --color-024959: #024959;
+    --color-236e8c: #236E8C;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-f2f2f2);
+}
+
+#startRecognitionButton {
+    display: none;
+}
+
+.start-button {
+    background-color: var(--color-236e8c);
+    color: var(--color-f2f2f2);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.start-button:hover {
+    background-color: var(--color-024959);
+}
+
+.audio-visualizer {
+    background-color: #024959;
+}
+
+footer span {
+    color: var(--color-236E8C);
+}
+
+footer .fas .fa-heart {
+    color: var(--color-024959);
+}
