@@ -1,4 +1,4 @@
-const CACHE_NAME = 'chatcast-cache-v1';  // Uma versão para o cache.
+const CACHE_NAME = 'chatcast-cache-alteracoes-botao-microfone';  // Uma versão para o cache.
 const urlsToCache = [  // Lista de arquivos que deseja armazenar em cache.
     '/',
     '/index.html',
