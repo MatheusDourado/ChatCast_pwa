@@ -12,17 +12,17 @@ const useRecognition = () => {
 
 
     const startListening = useCallback(() => {
-        if (recognition.current?.state !== 'active' && !window.speechSynthesis.speaking) {
+        if ((!recognition.current?.state || recognition.current?.state !== 'active') && !window.speechSynthesis.speaking) {
             setIsRecognizing(true);
-            recognition.current.abort();
+            // recognition.current.abort();
             recognition.current.start();
         }
     }, [recognition, setIsRecognizing]);
     
     const stopListening = () => {
         if (isRecognizing) {
+            recognition.current.abort();
             setIsRecognizing(false);
-            recognition.current.stop();
         }
     };
 
@@ -38,12 +38,12 @@ const useRecognition = () => {
         }
 
         utterance.onstart = () => {
-            // setIsAISpeaking(true);
+            setIsAISpeaking(true);
             setIsSpeaking(true);
         };
 
         utterance.onend = () => {
-            // setIsAISpeaking(false);
+            setIsAISpeaking(false);
             setIsSpeaking(false);
             if (!isMobile) { 
                 setShouldRestartListening(true);  
@@ -86,7 +86,7 @@ const useRecognition = () => {
         };
     }, [isRecognizing, messages, setMessages, startListening, speak]);
 
-    return { startListening, stopListening, isAISpeaking };
+    return { startListening, stopListening, isAISpeaking, isRecognizing };
 };
 
 export default useRecognition;

@@ -1,8 +1,9 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useChat } from '../context/ChatContext';
 
 function useCanvasDrawing(canvasRef) {
     const { isSpeaking } = useChat();
+    const frameId = useRef(null)
 
     const drawWaves = (canvasContext, width, height) => {
         const centerY = height / 2;
@@ -54,17 +55,17 @@ function useCanvasDrawing(canvasRef) {
             drawLoading(canvasContext, width, height);
         }
 
-        requestAnimationFrame(draw);
+        frameId.current = requestAnimationFrame(draw);
     }, [canvasRef, drawLoading, isSpeaking]);
 
     useEffect(() => {
         if (canvasRef.current) {
-            requestAnimationFrame(draw);
+            frameId.current = requestAnimationFrame(draw);
         }
 
         // Limpeza ao desmontar
         return () => {
-            cancelAnimationFrame(draw);
+            cancelAnimationFrame(frameId.current);
         };
     }, [draw, canvasRef.current]);
 
